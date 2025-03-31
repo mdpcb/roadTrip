@@ -1,0 +1,11 @@
+Address	PricePerGallon	BathroomQuality	SnackQuality	DistanceFromCurrentLocation
+123 Main St,	3.49,	4,	3,	10
+456 Elm St,	3.69,	5,	4,	5
+789 Oak St,	3.29,	3,	2,	20
+101 Pine St,	3.89,	4,	5,	15
+202 Maple Ave,	3.59,	2,	4,	30
+303 Birch Rd,	3.99,	3,	3,	40,
+404 Cedar Blvd,	3.49,	5,	5,	25
+505 Oakwood Ln,	3.69,	4,	4,	8
+606 Pinehill Dr,	3.79,	2,	3,	35
+707 Willow Way,	3.89,	5,	4,	12
