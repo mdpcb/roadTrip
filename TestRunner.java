@@ -11,7 +11,7 @@ public class TestRunner {
         
 
         // Create a RoadTrip instance
-        RoadTrip trip = new RoadTrip(stations, 25); // Example with an average MPG of 25
+        RoadTrip trip = new RoadTrip(stations, 25, 5); // Example with an average MPG of 25 and 5 gallons of fuel left
 
         // Test Part (a)
         GasStation testStation = stations.get(0);  // Take the first station for testing
@@ -22,7 +22,7 @@ public class TestRunner {
         ArrayList<GasStation> filteredStations = trip.filterAndSortStations(10, 50);
         System.out.println("Filtered and Sorted Stations:");
         for (GasStation station : filteredStations) {
-            System.out.println(station.getAddress() + " - Desirability: " + trip.calculateDesirability(station));
+            System.out.println(station.getAddress());
         }
     }
 }
