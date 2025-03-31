@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class RoadTrip {
     private ArrayList<GasStation> gasStations; // List of gas stations along the route
     private double averageMPG; // Vehicle's average miles per gallon (MPG)
+    private double gasLeft; // Vehicle's current gas remaining
 
     public RoadTrip(ArrayList<GasStation> stations, double averageMPG) {
         gasStations = stations;
@@ -14,9 +15,12 @@ public class RoadTrip {
      * Calculates the desirability score for a single gas station. The desirability function
      * combines the price per gallon, bathroom quality, snack quality, and distance to provide a score.
      * 
-     * Desirability = (Bathroom Quality * 0.2) + (Snack Quality * 0.2) - (Price per Gallon * 0.4) - (Distance * 0.2)
+     * Desirability = (Bathroom Quality * 2) + (Snack Quality * 2) + ((Minimum Price per Gallon) / (Price per Gallon)) * 40)
+     
+     * Check if distance is greater than vehicle range, if it is return -1. If not, adjust the Desirability according to the formula
+     *
+     * Desirability = Desirability - (Distance/(averageMPG * gasLeft) * 40)
      * 
-     * The score is scaled to 100.
      * 
      * @param station the gas station for which desirability needs to be calculated
      * @return the desirability score for the given gas station
