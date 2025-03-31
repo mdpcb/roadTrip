@@ -5,9 +5,10 @@ public class RoadTrip {
     private double averageMPG; // Vehicle's average miles per gallon (MPG)
     private double gasLeft; // Vehicle's current gas remaining
 
-    public RoadTrip(ArrayList<GasStation> stations, double averageMPG) {
+    public RoadTrip(ArrayList<GasStation> stations, double averageMPG, double gasLeft) {
         gasStations = stations;
         this.averageMPG = averageMPG;
+        this.gasLeft = gasLeft;
     }
 
     /**
