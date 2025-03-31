@@ -1,4 +1,4 @@
-Address	PricePerGallon	BathroomQuality	SnackQuality	DistanceFromCurrentLocation
+Address,	PricePerGallon,	BathroomQuality,	SnackQuality,	DistanceFromCurrentLocation
 123 Main St,	3.49,	4,	3,	10
 456 Elm St,	3.69,	5,	4,	5
 789 Oak St,	3.29,	3,	2,	20
