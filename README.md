@@ -27,14 +27,24 @@ You are planning a long road trip and want to determine the best places to stop 
 
 ### Task:
 Implement the `calculateDesirability` method in the `RoadTrip.java` file. This method will calculate a desirability score for a given gas station based on the following factors:
-- **Bathroom Quality**: Rating from 1 to 5, where 1 is poor and 5 is excellent. This factor contributes **0.2** to the desirability score.
-- **Snack Quality**: Rating from 1 to 5, where 1 is poor and 5 is excellent. This factor contributes **0.2** to the desirability score.
-- **Price per Gallon**: The price per gallon of gas. This factor contributes **-0.4** to the desirability score (higher prices are less desirable).
-- **Distance**: The distance from the current location to the gas station. This factor contributes **-0.2** to the desirability score (greater distances make a station less desirable).
+**Bathroom Quality**:  
+   - Bathroom quality is rated on a scale from 1 to 5. The higher the number, the better the bathroom. The bathroom quality contributes 2 points per rating (e.g., if the bathroom quality is 4, it contributes 8 points).
+
+**Snack Quality**:  
+   - Snack quality is rated on a scale from 1 to 5. The higher the number, the better the snacks. The snack quality contributes 2 points per rating.
+
+**Price Per Gallon**:  
+   - The price per gallon of gas is factored in such that cheaper gas is better. The price factor is calculated as `(Minimum Price per Gallon) / (Price per Gallon)` and is multiplied by 40. This means a lower price per gallon results in a higher desirability score.
+
+**Distance**:  
+   - Distance is calculated based on how far the gas station is from your current location. If the distance to the gas station exceeds the vehicle’s range (calculated as `remaining fuel * average mpg`), the desirability score is adjusted to `-1` (indicating the station is out of range).  
+   - If the gas station is within range, the desirability score is reduced by a penalty based on distance. The formula for the penalty is `(Distance / (average MPG * remaining fuel)) * 40`.
+
 
 ### Formula for Desirability:
 The formula to calculate the desirability score is:
-```Desirability = (Bathroom Quality * 0.2) + (Snack Quality * 0.2) - (Price per Gallon * 0.4) - (Distance * 0.2)```
+```Desirability = (Bathroom Quality * 2) + (Snack Quality * 2) + ((Minimum Price per Gallon) / (Price per Gallon) * 40) - (Distance / (average MPG * remaining fuel)) * 40```
+
 
 ### Requirements:
 1. Implement the `calculateDesirability` method to compute the desirability score for a given gas station.
@@ -44,13 +54,16 @@ The formula to calculate the desirability score is:
 
 ### Expected Output:
 For a gas station with the following data:
-- Bathroom Quality: 4
-- Snack Quality: 3
-- Price per Gallon: 3.69
+- Price per Gallon: $3.31
+- Bathroom Quality: 3
+- Snack Quality: 4
 - Distance: 10 miles
-
+- Remaining Fuel: 5 gallons
+- Average MPG: 25 miles/gallon
+- Minimum Price per Gallon: $2.50
+  
 The desirability score would be calculated and returned.
-
+The final desirability score for this gas station would be 40.92. If the distance had been greater than the vehicle's remaining range (e.g., if the distance was 200 miles and the vehicle's range was 125 miles), the desirability would be -1, indicating that the gas station is out of range.
 ---
 
 ## Part (b): Filter and Sort Gas Stations Based on Desirability
@@ -81,7 +94,18 @@ where `remainingFuel` is the amount of fuel remaining in gallons and `averageMPG
 The method should return a list of gas stations that are within the car’s range and meet the minimum desirability requirement. The stations should be sorted in descending order of desirability.
 
 Example:
-For a car with `remainingFuel = 5` gallons, `averageMPG = 25`, and a `minDesirability = 50`, only the stations that fall within the maximum range (which is `remainingFuel * averageMPG = 125 miles`) and have a desirability score of 50 or greater should be included.
+Let's assume the minimum desirability threshold for Part B is set to 10. Based on this:
+
+- Gas Station C: Desirability = 37.17 
+- Gas Station A: Desirability = 35.16 
+- Gas Station B: Desirability = 27.03 
+- Gas Station D: Desirability = -1 
+
+Final Result for Part B:
+After sorting and filtering, the remaining gas stations are:
+```Test C, Test A, Test B```
+
+These are the gas stations that are within range and meet the minimum desirability threshold.
 
 
 
